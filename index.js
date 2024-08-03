@@ -4,27 +4,21 @@ const app = express();
 const cors = require("cors");
 const port = 5000;
 
-//add middlewares 
+// Add middlewares
 app.use(express.json());
-app.use(cors);
+app.use(cors()); // Add parentheses to call the function
 
-
-
-// default route
-app.get("/",(req,res)=>{
-    res.send(`<h1> This is the server code </h1>`)
+// Default route
+app.get("/", (req, res) => {
+    res.send(`<h1> This is the server code </h1>`);
 });
 
-app.post("api/v1/create",(req,res)=>{
-
-    console.log("the esp32s3 sent data here ", req.body);
-
+app.post("/api/v1/create", (req, res) => { // Add a leading slash to the route path
+    console.log("The esp32s3 sent data here ", req.body);
     res.send("The data is fetched here ");
+});
 
-
-})
-
-// server listing 
-app.listen(port,()=>{
-    console.log(`our server is running on port ${port}`)
-})
+// Server listening
+app.listen(port, () => {
+    console.log(`Our server is running on port ${port}`);
+});
